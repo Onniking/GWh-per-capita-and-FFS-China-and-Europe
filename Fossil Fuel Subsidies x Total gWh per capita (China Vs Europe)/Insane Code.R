@@ -7,6 +7,8 @@ library(tidyverse)
 
 Subsidy <- read.csv("Data/Fossil Fuel Subidies 2015-2036.csv")
 
+kwh <- read.csv("Data/EUCHI_00-25.csv")
+
 View(Subsidy)
 
 european_countries <- c(
@@ -143,3 +145,21 @@ cat("Europe Pearson 95% CI: [",
     round(cor_europe_pearson$conf.int[1], 3), ",",
     round(cor_europe_pearson$conf.int[2], 3), "]\n")
 
+#China and Europe kwh per capita
+ggplot(data = kwh, aes(x = Year, y = Per.capita.electricity.use, color = Entity, group = Entity)) +
+  geom_line(linewidth = 1.2) + 
+  geom_point(size = 2) + 
+  labs(
+    title = "Per Capita Electricity Consumption (2000-2025)",
+    subtitle = "Comparing trends between China and Europe",
+    x = "Year",
+    y = "Electricity Use (kWh per capita)",
+    color = "Region"
+  ) +
+  scale_color_manual(values = c("China" = "#de2d26", "Europe" = "#3182bd")) + 
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
