@@ -7,6 +7,8 @@ library(tidyverse)
 
 Subsidy <- read.csv("Data/Fossil Fuel Subidies 2015-2036.csv")
 
+kwh <- read.csv("Data/EUCHI_00-25.csv")
+
 View(Subsidy)
 
 european_countries <- c(
